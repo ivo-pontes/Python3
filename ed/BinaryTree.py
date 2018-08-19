@@ -121,91 +121,126 @@ class BinaryTree:
 							pai.left = None
 						elif pai.right == no_atual:
 							pai.right = None
-			#Caso 2: nó a ser removido possui apenas um filho
-			elif (no_atual.left == None and no_atual.right != None) \
-				or (no_atual.left != None and no_atual.right == None):
-				#Verifico se o nó a ser removido é a raiz
-				if pai == None:
-					#Verifica se o filho do no_atual é filho à esquerda
-					if no_atual.left != None:
-						self.root = no_atual.left
-					else: #O filho de no_atual é filho à direita
-						self.root = no_atual.right
-				else:
-					#Verifica se o filho de no_atual é filho à esquerda
-					if no_atual.left != None:
-						#Verifica se no_atual é filho à esquerda
-						if pai.left and pai.left.label == no_atual.label:
-							pai.left = no_atual.left
-						else: #no_atual é filho à direita
-							pai.right = no_atual.left
-					else: #filho de no_atual é filho à direita
-						#Verifica se no_atual é filho à esqeurda
-						if pai.left and pai.left.label == no_atual.label:
-							pai.left = no_atual.right
-						else: #no_atual é filho à direita
-							pai.right = no_atual.right
-			#Caso 3: o nó a ser removido possui dois filhos
-			#Menor elemento da subárvore a direita é o filho
-			elif no_atual.left != None and no_atual.right != None:
-				pai_menor_no = no_atual
-				menor_no = no_atual.right
-				proximo_menor = no_atual.right.left
-
-				while proximo_menor != None:
-					pai_menor_no = menor_no
-					menor_no = proximo_menor
-					proximo_menor = menor_no.left
-
-				#Verifica se o nó a ser removido é raiz
-				if pai == None:
-					#Verifica se nó vai ser nova raiz é filho da raiz
-					if self.root.right.label == menor_no.label:
-						menor_no.left = self.root.left
+				#Caso 2: nó a ser removido possui apenas um filho
+				elif (no_atual.left == None and no_atual.right != None) \
+					or (no_atual.left != None and no_atual.right == None):
+					#Verifico se o nó a ser removido é a raiz
+					if pai == None:
+						#Verifica se o filho do no_atual é filho à esquerda
+						if no_atual.left != None:
+							self.root = no_atual.left
+						else: #O filho de no_atual é filho à direita
+							self.root = no_atual.right
 					else:
-					#Verifica se o menor_no é filho à esquerda ou à direita
-					#Para setar None o menor nó
+						#Verifica se o filho de no_atual é filho à esquerda
+						if no_atual.left != None:
+							#Verifica se no_atual é filho à esquerda
+							if pai.left and pai.left.label == no_atual.label:
+								pai.left = no_atual.left
+							else: #no_atual é filho à direita
+								pai.right = no_atual.left
+						else: #filho de no_atual é filho à direita
+							#Verifica se no_atual é filho à esqeurda
+							if pai.left and pai.left.label == no_atual.label:
+								pai.left = no_atual.right
+							else: #no_atual é filho à direita
+								pai.right = no_atual.right
+				#Caso 3: o nó a ser removido possui dois filhos
+				#Menor elemento da subárvore a direita é o filho
+				elif no_atual.left != None and no_atual.right != None:
+					pai_menor_no = no_atual
+					menor_no = no_atual.right
+					proximo_menor = no_atual.right.left
+
+					while proximo_menor != None:
+						pai_menor_no = menor_no
+						menor_no = proximo_menor
+						proximo_menor = menor_no.left
+
+					#Verifica se o nó a ser removido é raiz
+					if pai == None:
+						#Verifica se nó vai ser nova raiz é filho da raiz
+						if self.root.right.label == menor_no.label:
+							menor_no.left = self.root.left
+						else:
+						#Verifica se o menor_no é filho à esquerda ou à direita
+						#Para setar None o menor nó
+							if pai_menor_no.left and pai_menor_no.left.label == menor_no.label:
+								pai_menor_no.left = None
+							else:
+								pai_menor_no.right = None
+
+							#Seta os filhos à direita e esquerda de menor_no
+							menor_no.left = no_atual.left
+							menor_no.right = no_atual.right
+
+						#O menor_no agora é raiz
+						self.root = menor_no
+
+					#O nó a ser removido não é raiz	
+					else:
+						'''
+						Verifica se o no_atual é filho à esquerda ou à direita
+						para setar o menor_no como filho do pai do no_atual
+						'''
+						if pai.left and pai.left.label == no_atual.label:
+							pai.left = menor_no
+						else:
+							pai.right = menor_no
+						
+						'''
+						Verifica se o menor_no é filho à esquerda ou à direita
+						para setar None no menor_no
+						'''
 						if pai_menor_no.left and pai_menor_no.left.label == menor_no.label:
 							pai_menor_no.left = None
 						else:
 							pai_menor_no.right = None
 
-						#Seta os filhos à direita e esquerda de menor_no
+						#setar filhos à esquerda e direita do menor_no
 						menor_no.left = no_atual.left
 						menor_no.right = no_atual.right
 
-					#O menor_no agora é raiz
-					self.root = menor_no
+				break
+			pai = no_atual
 
-				#O nó a ser removido não é raiz	
-				else:
-					'''
-					Verifica se o no_atual é filho à esquerda ou à direita
-					para setar o menor_no como filho do pai do no_atual
-					'''
-					if pai.left and pai.left.label == no_atual.label:
-						pai.left = menor_no
-					else:
-						pai.right = menor_no
-					
-					'''
-					Verifica se o menor_no é filho à esquerda ou à direita
-					para setar None no menor_no
-					'''
-					if pai_menor_no.left and pai_menor_no.left.label == menor_no.label:
-						pai_menor_no.left = None
-					else:
-						pai_menor_no.right = None
+			#Verifica se vai para esquerda ou direita
+			if label < no_atual.label:
+				no_atual = no_atual.left
+			else:
+				no_atual = no_atual.right
 
-					#setar filhos à esquerda e direita do menor_no
-					menor_no.left = no_atual.left
-					menor_no.right = no_atual.right
+'''
+#Árvore Binária
+tree = BinaryTree()
+tree.insert(8)
+tree.insert(3)
+tree.insert(1)
+tree.insert(6)
+tree.insert(4)
+tree.insert(7)
+tree.insert(10)
+tree.insert(14)
+tree.insert(13)
 
-			break
-		pai = no_atual
+#tree.preOrdem(tree.root)
+#print("")
 
-		#Verifica se vai para esquerda ou direita
-		if label < no_atual.label:
-			no_atual = no_atual.left
-		else:
-			no_atual = no_atual.right
+#Caso 1: Nós folhas
+#tree.remove(1)		# 8, 3, 6, 4, 7, 10, 14, 13
+#tree.remove(13)	# 8, 4, 1, 6, 4, 7, 10, 14
+#tree.remove(4)		# 8, 3, 1, 6, 7, 10, 14, 13
+
+#Caso 2: Nós possuem 1 filho à esquerda ou direita
+#tree.remove(10)	# 8, 3, 1, 6, 7, 13, 14
+#tree.remove(14)	# 8, 3, 1, 6, 7, 10, 13
+
+#Caso 3: Nós possuem 2 filhos
+#tree.remove(3)		# 8, 4, 1, 6, 7, 10, 14, 13
+#tree.remove(6)		# 8, 3, 1, 7, 4, 10, 14, 13
+
+#Caso 3.x: Nó raiz
+tree.remove(8)		# 10, 3, 1, 6, 4, 7, 14, 13
+
+tree.preOrdem(tree.root)
+'''
