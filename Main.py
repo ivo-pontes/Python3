@@ -16,6 +16,9 @@ from ed.Queue import Queue
 from ed.Deque import Deque
 from ed.LinkedList import LinkedList
 from ed.BinaryTree import BinaryTree
+from ed.PriorityQueue import PriorityQueue
+from ed.PriorityQueue import Entidade
+from ed.HashTable import HashTable
 
 if __name__ == '__main__':
 	'''
@@ -27,8 +30,6 @@ if __name__ == '__main__':
 	#moduloMath = ModuloMath()
 	#thread = Threads()
 	gui = Gui()
-
-
 
 
 	print("Fim execução!!")
