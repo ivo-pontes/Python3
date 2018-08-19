@@ -4,12 +4,27 @@
 from tkinter import *
 from tkinter import messagebox
 
+
 class Gui():
 
 	def __init__(self):
 
 		window = Tk()
 		window.title('Interface Gráfica')
+
+		menu = Menu(window)
+		window.config(menu=menu)
+		menuArquivo = Menu(menu)
+		menu.add_cascade(label="Arquivo", menu=menuArquivo)
+		menuArquivo.add_command(label="Novo", command=self.novoArquivo)
+		menuArquivo.add_command(label="Abrir...", command=self.abrirArquivo)
+		menuArquivo.add_separator()
+		menuArquivo.add_command(label="Sair", command=window.quit)
+
+		sobre = Menu(menu)
+		menu.add_cascade(label="Sobre", menu=sobre)
+		sobre.add_command(label="Sobre", command=self.menuSobre)
+
 
 		self.entry_text = Entry(window, width=30)
 		self.entry_text.pack(padx=10, pady=10)
@@ -52,3 +67,12 @@ class Gui():
 	def mostrar_valor(self):
 		print(self.radio_value.get())
 		messagebox.showinfo('Valor Selecionado', self.opcoes[self.radio_value.get()])
+
+	def novoArquivo(self):
+		messagebox.showinfo('Novo Arquivo', "Tudo certo!")
+
+	def abrirArquivo(self):
+		messagebox.showinfo('Abrir Arquivo', "Tudo certo!")
+
+	def menuSobre(self):
+		messagebox.showinfo('Sobre Mim', "Eu sou eu.")

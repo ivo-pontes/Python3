@@ -47,3 +47,16 @@ class Stack: #Pilha
 	'''
 	def length(self):
 		return self.size
+
+#Pilha
+'''
+print("Pilha")
+s = Stack()
+s.pop()
+print("Vazia: {}".format(s.empty()))
+s.push(10)
+s.push(3)
+print("Vazia: {}\nPilha: {}".format(s.empty(), s.stack))
+print("Tamanho: {}".format(s.length()))
+print("Topo: {}".format(s.top()))
+'''

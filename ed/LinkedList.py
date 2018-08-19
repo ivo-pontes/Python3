@@ -162,3 +162,19 @@ class LinkedList:
 			print(no_atual.label, end=' ')
 			no_atual = no_atual.next
 		print("")
+
+
+#Lista Ligada
+'''
+lista = LinkedList()
+lista.push("Zi",0)
+lista.push("Lane", 1)
+lista.push("El",0)
+lista.push("Ivo",3)
+lista.print()
+print("Tamanho: {}".format(lista.size))
+lista.pop(0)
+lista.print()
+lista.pop(1)
+lista.print()
+'''

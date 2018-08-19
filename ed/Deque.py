@@ -79,3 +79,26 @@ class Deque:
 		for i in self.deque:
 			print(i, end=' ') #Imprime todos os índices com espaço ao invés de '\n'
 		print("\n")
+
+#Deque
+'''
+print("Deque")
+d = Deque()
+#Inserção
+d.push_front(10)
+d.push_front(5)
+d.print()
+d.push_back(20)
+d.push_front(7) #Deve ficar 7,5,10,20
+d.push_back(40) #Deve ficar 7,5,10,20,40
+d.print()
+print("Primeiro elemento: {}".format(d.front()))
+print("Último elemento: {}".format(d.back()))
+#Remoção
+d.pop_back()	#Deve ficar 7,5,10,20
+d.pop_back()	#Deve ficar 7,5,10
+d.pop_front()	#Deve ficar 5,10
+d.pop_front()	#Deve ficar 10
+d.pop_front()	#Deve ficar vazio
+d.print()
+'''

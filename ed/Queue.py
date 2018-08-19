@@ -46,3 +46,21 @@ class Queue: #Fila
 	def front(self):
 		if not self.empty():
 			return self.queue[0]
+
+#Fila
+'''
+print("Fila")
+q = Queue()
+q.push(10)
+q.push(2)
+q.push(4)
+print("Vazia: {}".format(q.empty()))
+print("Tamanho: {}".format(q.length()))
+print("Frente: {}".format(q.front()))
+q.pop()
+print("Frente: {}".format(q.front()))
+q.pop()
+print("Frente: {}".format(q.front()))
+q.pop()
+print("Vazia: {}".format(q.empty()))
+'''
